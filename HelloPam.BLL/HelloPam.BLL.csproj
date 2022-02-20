@@ -44,5 +44,15 @@
     <Compile Include="UserBLO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HelloPam.BO\HelloPam.BO.csproj">
+      <Project>{EC258F30-B968-40F6-B4DE-F6ACC11E59C0}</Project>
+      <Name>HelloPam.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelloPam.DAL\HelloPam.DAL.csproj">
+      <Project>{5EE46312-CCBC-4528-A8AB-CED2725C9479}</Project>
+      <Name>HelloPam.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
