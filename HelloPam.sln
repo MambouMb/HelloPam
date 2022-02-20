@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPam.BO", "HelloPam.BO\HelloPam.BO.csproj", "{EC258F30-B968-40F6-B4DE-F6ACC11E59C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPam.DAL", "HelloPam.DAL\HelloPam.DAL.csproj", "{5EE46312-CCBC-4528-A8AB-CED2725C9479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EC258F30-B968-40F6-B4DE-F6ACC11E59C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC258F30-B968-40F6-B4DE-F6ACC11E59C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC258F30-B968-40F6-B4DE-F6ACC11E59C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE46312-CCBC-4528-A8AB-CED2725C9479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE46312-CCBC-4528-A8AB-CED2725C9479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE46312-CCBC-4528-A8AB-CED2725C9479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE46312-CCBC-4528-A8AB-CED2725C9479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
