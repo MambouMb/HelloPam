@@ -1,7 +1,6 @@
 ﻿
 
 using HelloPam.BO;
-using Junior.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -65,11 +64,11 @@ namespace HelloPam.DAL
                 true
                 );
         }
-        public IEnumerable<User> Find(User user)
+        public IEnumerable<User> Find(User user = null)
         {
             var reader = sql.Read
                 (
-                    "sp_user_Select",
+                    "Sp_user_Select",
                     GetParameters(user),
                     true
                 );
@@ -84,28 +83,28 @@ namespace HelloPam.DAL
         {
             return new User
                 (
-                    reader ["Id"] == null ? 0: int.Parse(reader["Id"].ToString()),
-                    reader["Username"] == null ? null: reader["Username"].ToString(),
-                    reader["Password"] == null ? null : reader["Password"].ToString(),
-                    reader["Fullname"] == null ? null : reader["Fullname"].ToString(),
-                    reader["Profile"] == null ? User.ProfileOptions.VIsitor : (User.ProfileOptions)int.Parse(reader["Profile"].ToString()),
-                    reader["Statut"] == null ? false : bool.Parse(reader["Statut"].ToString()),
-                    reader["Picture"] == null ? null : (byte[])reader["Picture"],
-                    reader["CreatedAt"] == null ? null : (DateTime?)DateTime.Parse(reader["Picture"].ToString())
+                    reader ["Id"] == DBNull.Value ? 0: int.Parse(reader["Id"].ToString()),
+                    reader["Username"] == DBNull.Value ? null: reader["Username"].ToString(),
+                    reader["Password"] == DBNull.Value ? null : reader["Password"].ToString(),
+                    reader["Fullname"] == DBNull.Value ? null : reader["Fullname"].ToString(),
+                    reader["Profile"] == DBNull.Value ? User.ProfileOptions.VIsitor : (User.ProfileOptions)int.Parse(reader["Profile"].ToString()),
+                    reader["Statut"] == DBNull.Value ? false : bool.Parse(reader["Statut"].ToString()),
+                    reader["Picture"] == DBNull.Value ? null : (byte[])reader["Picture"],
+                    reader["CreatedAt"] == DBNull.Value ? null : (DateTime?)DateTime.Parse(reader["CreatedAt"].ToString())
                 );
         }
         private IEnumerable<Sql.Parameter>  GetParameters(User user)
         {
             return new Sql.Parameter[]
             {
-                new Sql.Parameter("@Id", System.Data.DbType.Int32, (user.Id == 0? (object)DBNull.Value : user.Id)),
-                new Sql.Parameter("@Username", System.Data.DbType.String, (string.IsNullOrEmpty(user.Username) ? (object)DBNull.Value : user.Username)),
-                new Sql.Parameter("@Password", System.Data.DbType.String, (string.IsNullOrEmpty(user.Password) ? (object)DBNull.Value : user.Password)),
-                new Sql.Parameter("@Fullname", System.Data.DbType.String, (string.IsNullOrEmpty(user.Fullname) ? (object)DBNull.Value : user.Fullname)),
-                new Sql.Parameter("@Profile", System.Data.DbType.Int32, (user.Profile == null? (object)DBNull.Value : (int)user.Profile)),
-                new Sql.Parameter("@Statut", System.Data.DbType.Boolean, (user.Statut == null ? (object)DBNull.Value : user.Statut)),
-                new Sql.Parameter("@Picture", System.Data.DbType.Binary, (user.Picture == null ? (object)DBNull.Value : user.Picture)),
-                new Sql.Parameter("@CreatedAt", System.Data.DbType.DateTime, (user.Picture == null ? (object)DBNull.Value : user.CreatedAt)),
+                new Sql.Parameter("@Id", System.Data.DbType.Int32, (user == null || user.Id == 0? (object)DBNull.Value : user.Id)),
+                new Sql.Parameter("@Username", System.Data.DbType.String, (user == null || string.IsNullOrEmpty(user.Username) ? (object)DBNull.Value : user.Username)),
+                new Sql.Parameter("@Password", System.Data.DbType.String, (user == null || string.IsNullOrEmpty(user.Password) ? (object)DBNull.Value : user.Password)),
+                new Sql.Parameter("@Fullname", System.Data.DbType.String, (user == null || string.IsNullOrEmpty(user.Fullname) ? (object)DBNull.Value : user.Fullname)),
+                new Sql.Parameter("@Profile", System.Data.DbType.Int32, (user == null || user.Profile == null? (object)DBNull.Value : (int)user.Profile)),
+                new Sql.Parameter("@Statut", System.Data.DbType.Boolean, (user == null || user.Statut == null ? (object)DBNull.Value : user.Statut)),
+                new Sql.Parameter("@Picture", System.Data.DbType.Binary, (user == null || user.Picture == null ? (object)DBNull.Value : user.Picture)),
+                new Sql.Parameter("@CreatedAt", System.Data.DbType.DateTime, (user == null || user.Picture == null ? (object)DBNull.Value : user.CreatedAt)),
             };
         }
     }

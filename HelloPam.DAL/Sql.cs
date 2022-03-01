@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Common;
 
-namespace Junior.DAL
+namespace HelloPam.DAL
 {
     public class Sql
     {
@@ -57,6 +57,7 @@ namespace Junior.DAL
                     p.ParameterName = parameter.Name;
                     p.DbType = parameter.Type;
                     p.Value = parameter.Value;
+
                     command.Parameters.Add(p);
                 }
             }

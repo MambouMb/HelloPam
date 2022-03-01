@@ -49,9 +49,17 @@ namespace HelloPam.BLL
         {
             return userDAO.Login(username, password);
         }
-        public IEnumerable<User> FindUser(User user)
+        public User AuthenticateUser(string username, string password)
         {
-            return userDAO.Find(user).OrderByDescending(x => x.CreatedAt);
+            var user =  userDAO.Login(username, password);
+            if (user == null) return null;
+            if (user.Statut == false)
+                throw new UnauthorizedAccessException("Your account is disables !");
+            return user;
+        }
+        public IEnumerable<User> FindUser(User user = null)
+        {
+            return userDAO.Find(user).OrderByDescending(x => x.CreatedAt).ToList();
         }
     }
 }
